@@ -1,6 +1,9 @@
 CC=gcc
 CFLAGS=-lWarn -pedantic
 
+alarm: irtester.o libmyifttt.a
+	$(CC) irtester.o -L. -lmyifttt -lcurl -lwiringPi -o irtester
+
 tester: tester.o libmyifttt.a
 	$(CC) tester.o -L. -lmyifttt -lcurl -o tester
 
@@ -15,3 +18,5 @@ tester.o:	tester.c ifttt.h
 
 clean:
 	rm tester *.o
+all:
+	tester alarm
